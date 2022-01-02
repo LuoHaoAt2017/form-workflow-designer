@@ -4,13 +4,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
   entry: {
     'index': './client/index.js',
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist/assets')
   },
   module: {
     rules: [
@@ -48,8 +47,5 @@ module.exports = {
     extensions: [
       '.js', '.ts', '.vue'
     ]
-  },
-  devServer: {
-    port: 8088,
   },
 }

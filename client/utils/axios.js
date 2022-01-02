@@ -1,11 +1,9 @@
 import axios from "axios";
-import moment from "moment";
 
 const instance = axios.create({
   baseURL: "http://localhost:9001",
   timeout: 3000,
   withCredentials: true, // 表示跨域请求时是否需要使用凭证
-  headers: { 'X-Custom-Timestrap': moment().format("YYYY-MM-DD hh:mm:ss") },
 });
 
 instance.interceptors.request.use(
@@ -24,15 +22,15 @@ instance.interceptors.response.use(
   },
   function (error) {
     // 重定向
-    if (error.response.status === 301) {
+    if (error.response && error.response.status === 301) {
       const redirect = error.response.data.data.redirect;
       return (window.location.href = redirect);
     }
     // 重新登录
-    if (error.response.status === 401) {
+    if (error.response && error.response.status === 401) {
       return (window.location.href = "http://localhost:8088/#/login");
     }
-    return Promise.reject(error.response.data);
+    return Promise.reject(error.stack);
   }
 );
 
