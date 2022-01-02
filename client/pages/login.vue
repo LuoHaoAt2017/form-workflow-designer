@@ -91,8 +91,6 @@ export default {
 <style lang="less" scoped>
 form {
   width: 80%;
-  border: thin solid #eee;
-  border-radius: 4px;
   .form-group {
     display: flex;
     label {
@@ -105,5 +103,8 @@ form {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  position: relative;
+  top: 50%;
+  margin-top: -150px;
 }
 </style>
