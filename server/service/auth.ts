@@ -1,5 +1,6 @@
 import { Auth } from "../model/auth";
 import { User } from "../model/user";
+import { Role } from "../model/role";
 interface IAuth {
   username: string;
   password: string;
@@ -19,11 +20,14 @@ export default {
         username: username,
         password: password,
       });
-      await auth.setUser(
-        User.create({
-          user_name: username,
-        })
-      );
+      const user = await User.create({
+        user_name: username,
+      });
+      const role = await Role.create({
+        role_name: 'user'
+      });
+      await user.addRole(role);
+      await auth.setUser(user);
       return auth;
     } catch (err) {
       console.log("auth err: ", err);

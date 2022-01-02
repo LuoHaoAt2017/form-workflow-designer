@@ -28,7 +28,7 @@ instance.interceptors.response.use(
     }
     // 重新登录
     if (error.response && error.response.status === 401) {
-      return (window.location.href = "http://localhost:8088/#/login");
+      return (window.location.href = "http://localhost:9001/index.html/#/login");
     }
     return Promise.reject(error.stack);
   }

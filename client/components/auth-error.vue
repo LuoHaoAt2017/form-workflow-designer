@@ -1,6 +1,6 @@
 <template>
   <div class="auth-error">
-    没有权限
+    没有权限，请联系管理员开启权限。
   </div>
 </template>
 <script>

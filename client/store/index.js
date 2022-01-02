@@ -1,8 +1,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { SetUserInfo } from "./types";
+import { SetUserInfo, RestoreUser, UserInfoKey } from "./types";
 import { GetUserInfo } from "../apis";
 import authRouterPlugin from '@/plugins/auth-router';
+import restoreUserPlugin from '@/plugins/restore-user';
 
 Vue.use(Vuex);
 
@@ -12,13 +13,21 @@ const store = new Vuex.Store({
   },
   getters: {
     userRoles(state) {
-      return state.userInfo.roles || [];
+      const roles = state.userInfo.roles || [];
+      return roles.map(elem => elem.role_name);
     }
   },
   mutations: {
-    SetUserInfo(state, payload) {
+    [SetUserInfo](state, payload) {
       state.userInfo = payload;
+      window.sessionStorage.setItem(UserInfoKey, JSON.stringify(payload));
     },
+    [RestoreUser](state) {
+      const user = window.sessionStorage.getItem(UserInfoKey);
+      if (user) {
+        state.userInfo = JSON.parse(user);
+      }
+    }
   },
   actions: {
     async getUserInfo({ commit }, userId) {
@@ -32,6 +41,7 @@ const store = new Vuex.Store({
     },
   },
   plugins: [
+    restoreUserPlugin,
     authRouterPlugin
   ]
 });

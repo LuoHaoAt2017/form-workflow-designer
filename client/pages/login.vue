@@ -23,10 +23,18 @@
         <a-divider />
         <a-row type="flex" justify="center" :gutter="32">
           <a-col>
-            <a-icon type="github" style="font-size: 32px; cursor: pointer" @click="github"/>
+            <a-icon
+              type="github"
+              style="font-size: 32px; cursor: pointer"
+              @click="github"
+            />
           </a-col>
           <a-col>
-            <a-icon type="dingding" style="font-size: 32px; cursor: pointer" @click="dingding"/>
+            <a-icon
+              type="dingding"
+              style="font-size: 32px; cursor: pointer"
+              @click="dingding"
+            />
           </a-col>
         </a-row>
       </a-form-item>
@@ -35,6 +43,7 @@
 </template>
 <script>
 import { Login, AuthGithub, AuthDing } from "../apis";
+import { SetUserInfo } from "@/store/types";
 export default {
   name: "Login",
   data() {
@@ -51,11 +60,9 @@ export default {
       })
         .then((resp) => {
           if (resp.successful) {
+            this.$store.commit(SetUserInfo, resp.data);
             this.$router.push({
-              name: "Home",
-              query: {
-                uid: resp.data.id,
-              },
+              name: "Home"
             });
           }
         })
@@ -69,25 +76,21 @@ export default {
       });
     },
     github() {
-      AuthGithub().then(function() {
-        debugger
-      }).catch(function() {
-
-      });
+      AuthGithub()
+        .then(function () {})
+        .catch(function () {});
     },
     dingding() {
-      AuthDing().then(function() {
-      }).catch(function() {
-      });
-    }
+      AuthDing()
+        .then(function () {})
+        .catch(function () {});
+    },
   },
 };
 </script>
 <style lang="less" scoped>
 form {
   width: 80%;
-  margin: 200px auto;
-  padding: 50px 100px;
   border: thin solid #eee;
   border-radius: 4px;
   .form-group {
@@ -96,5 +99,11 @@ form {
       width: 150px;
     }
   }
+}
+.login {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 </style>

@@ -1,10 +1,8 @@
-import { User } from '../model/user';
+import { User } from "../model/user";
+import { Role } from "../model/role";
 
 export default {
-  async create({ user_name }: {
-    user_id: string,
-    user_name: string
-  }) {
+  async create({ user_name }: { user_id: string; user_name: string }) {
     try {
       return await User.create({
         user_name: user_name,
@@ -13,9 +11,7 @@ export default {
       return err;
     }
   },
-  async remove({ user_id }: {
-    user_id: string
-  }) {
+  async remove({ user_id }: { user_id: string }) {
     try {
       const user = await User.findByPk(user_id);
       if (user) {
@@ -28,10 +24,7 @@ export default {
       return err;
     }
   },
-  async update({ user_id, user_name }: {
-    user_id: string,
-    user_name: string
-  }) {
+  async update({ user_id, user_name }: { user_id: string; user_name: string }) {
     try {
       const user = await User.findByPk(user_id);
       user.user_name = user_name;
@@ -40,17 +33,32 @@ export default {
       return err;
     }
   },
-  async search({ user_name }: {
-    user_name: string
-  }) {
+  async search({ user_name }: { user_name: string }) {
     try {
       return await User.findOne({
         where: {
-          user_name: user_name
-        }
+          user_name: user_name,
+        },
       });
     } catch (err) {
       return err;
     }
   },
-}
+  async findWithRole(id: string) {
+    try {
+      return await User.findOne({
+        where: {
+          user_id: id,
+        },
+        include: [
+          {
+            model: Role,
+            as: "roles",
+          },
+        ],
+      });
+    } catch (err) {
+      return err;
+    }
+  },
+};

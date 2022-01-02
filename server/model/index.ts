@@ -8,8 +8,8 @@ const sequelize = new Sequelize(database, username, password, {
   dialect: dialect,
   host: host,
   define: {
-    freezeTableName: true
-  }
+    freezeTableName: true,
+  },
 });
 
 const models: any = {}; // eslint-disable-line
@@ -17,17 +17,16 @@ const UserModel = UserBuilder(sequelize);
 const RoleModel = RoleBuilder(sequelize);
 const AuthModel = AuthBuilder(sequelize);
 // user-auth
-UserModel.belongsTo(AuthModel, {
-  onDelete: "RESTRICT",
-  onUpdate: 'RESTRICT',
-});
+UserModel.belongsTo(AuthModel);
 AuthModel.hasOne(UserModel);
 // role - user
 RoleModel.belongsToMany(UserModel, {
-  through: 'UserRole'
+  through: "UserRole",
+  as: "users",
 });
 UserModel.belongsToMany(RoleModel, {
-  through: 'UserRole'
+  through: "UserRole",
+  as: "roles",
 });
 
 async function connect() {

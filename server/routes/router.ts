@@ -7,7 +7,7 @@ import formatResponse from '../helper';
 const router = Router();
 //=================== auth ==========================
 // passport.authenticate 方法是一个中间件，验证成功后，用户的信息赋予 req.user
-router.post("/login", passport.authenticate('local'), AuthController.login);
+router.post("/login-password", passport.authenticate('local'), AuthController.login);
 router.get("/github-auth", passport.authenticate('github'));
 router.get("/auth-github-redirect", function(req, res) {
   res.status(301).send(formatResponse({

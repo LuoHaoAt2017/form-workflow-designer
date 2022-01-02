@@ -1,9 +1,7 @@
-import path from "path";
 import cors from "cors";
 import bodyParser from "body-parser";
 import cookieSession from "cookie-session";
 import cookieParser from "cookie-parser";
-import favicon from "serve-favicon";
 import express from "express";
 import moment from "moment";
 import passport from "passport";
@@ -19,9 +17,8 @@ import { Auth } from "./model/auth";
   const app = express();
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
-  // app.use(favicon(path.join(__dirname, 'assets', 'favicon.ico')));
   app.use(cookieParser());
-  app.use("/", express.static("./dist/assets"));
+  app.use("/index.html", express.static("./dist/assets"));
   app.use(
     cookieSession({
       name: "workflow-session",
@@ -33,8 +30,6 @@ import { Auth } from "./model/auth";
     cors({
       origin: [
         "http://localhost:8088",
-        "https://github.com",
-        "https://api.github.com",
       ],
       methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
       allowedHeaders: ["Content-Type", "Authorization"],
@@ -46,17 +41,18 @@ import { Auth } from "./model/auth";
   app.use(passport.session());
   passport.use(
     new LocalStrategy(async function (username, password, done) {
-      const user = await User.findOne({
+      const auth = await Auth.findOne({
         where: {
           username: username,
         },
       });
-      if (!user) {
+      if (!auth) {
         return done(null, false);
       }
-      if (user.password !== password) {
+      if (auth.password !== password) {
         return done(null, false);
       }
+      const user = await auth.getUser();
       return done(null, user);
     })
   );
@@ -92,7 +88,7 @@ import { Auth } from "./model/auth";
     )
   );
   passport.serializeUser(function (user, done) {
-    done(null, (user as any).id);
+    done(null, (user as any).user_id);
   });
   passport.deserializeUser(async function (id: string, done) {
     try {
