@@ -24,7 +24,7 @@ export default {
         user_name: username,
       });
       const role = await Role.create({
-        role_name: 'user'
+        role_name: 'root'
       });
       await user.addRole(role);
       await auth.setUser(user);
