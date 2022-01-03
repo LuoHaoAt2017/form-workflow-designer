@@ -21,6 +21,13 @@ export function Login({ username, password }) {
   });
 }
 
+export function Logout() {
+  return axios.request({
+    url: "/logout",
+    method: "GET"
+  });
+}
+
 export function Register({ username, password }) {
   return axios.request({
     url: "/register",
@@ -54,5 +61,40 @@ export function AuthDing() {
   return axios.request({
     url: "/ding-auth",
     method: "GET",
+  });
+}
+
+export function GetUsers() {
+  return axios.request({
+    url: "/getAllUser",
+    method: "get"
+  });
+}
+
+export function GetUsersWithRole() {
+  return axios.request({
+    url: "/getUsersWithRole",
+    method: "get"
+  });
+}
+
+export function UpdateUserRoles({
+  userId,
+  roles
+}) {
+  return axios.request({
+    url: "/setUserRoles",
+    method: "get",
+    params: {
+      roles: roles,
+      userId: userId,
+    }
+  });
+}
+
+export function GetRoles() {
+  return axios.request({
+    url: "/getAllRoles",
+    method: "get"
   });
 }

@@ -1,18 +1,46 @@
 <template>
   <div class="app">
-    <router-view></router-view>
+    <app-header></app-header>
+    <app-content>
+      <router-view></router-view>
+    </app-content>
   </div>
 </template>
 <script>
+import AppHeader from "./components/app-header.vue";
+import AppContent from "./components/app-content.vue";
 export default {
-  name: 'App',
-}
+  name: "App",
+  components: {
+    AppHeader,
+    AppContent,
+  },
+};
 </script>
+<style lang="less">
+h3, h4, h5, h6 {
+  text-align: center;
+}
+</style>
 <style lang="less" scoped>
 .app {
-  width: 100%;
+  background: #eee;
   height: 100%;
-  margin: 0 auto;
-  position: relative;
+  box-sizing: border-box;
+  .app-header {
+    padding: 0 16px;
+    background: #fff;
+    height: 54px;
+    line-height: 54px;
+  }
+  .app-content {
+    height: calc(100% - 54px - 32px);
+    min-height: 320px;
+    padding: 16px 16px;
+    margin: 16px 16px;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 4px;
+  }
 }
 </style>

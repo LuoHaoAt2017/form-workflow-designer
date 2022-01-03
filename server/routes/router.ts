@@ -19,16 +19,18 @@ router.put("/register", AuthController.register);
 router.get("/logout", AuthController.logout);
 router.delete("/destory", AuthController.destory);
 //=================== user ==========================
-router.put("/user", UserController.create);
-router.delete("/user", UserController.remove);
-router.post("/user", UserController.update);
-router.get("/user", UserController.getById);
-router.get("/users/", UserController.getAll);
+router.put("/addUser", UserController.create);
+router.delete("/deleteUser", UserController.remove);
+router.post("/updateUser", UserController.update);
+router.get("/getUserById", UserController.getById);
+router.get("/getAllUser", UserController.getAll);
+router.get("/setUserRoles", UserController.updateUserRoles);
+router.get("/getUsersWithRole", UserController.getUsersWithRole);
 //=================== role ==========================
 router.put("/role", RoleController.create);
 router.delete("/role", RoleController.remove);
 router.post("/role", RoleController.update);
 router.get("/role", RoleController.getById);
-router.get("roles/", RoleController.getAll);
+router.get("/getAllRoles", RoleController.getAll);
 //=============================================
 export default router;

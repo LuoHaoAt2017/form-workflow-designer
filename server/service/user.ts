@@ -1,5 +1,6 @@
 import { User } from "../model/user";
 import { Role } from "../model/role";
+import { Op } from "sequelize";
 
 export default {
   async create({ user_name }: { user_id: string; user_name: string }) {
@@ -57,6 +58,41 @@ export default {
           },
         ],
       });
+    } catch (err) {
+      return err;
+    }
+  },
+  async getAllWithRoles() {
+    try {
+      return await User.findAll({
+        include: [
+          {
+            model: Role,
+            as: "roles",
+          },
+        ],
+      });
+    } catch (err) {
+      return err;
+    }
+  },
+  async updateUserRoles(userId: string, roleIds: string[]) {
+    try {
+      const user = await User.findByPk(userId);
+      if (!user) {
+        return new Error("用户不存在");
+      }
+      const roles = await Role.findAll({
+        where: {
+          role_id: {
+            [Op.in]: roleIds,
+          },
+        },
+      });
+      if (!roles || roles.length == 0) {
+        return new Error("角色不存在");
+      }
+      return await (user as any).setRoles(roles);
     } catch (err) {
       return err;
     }

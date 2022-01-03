@@ -36,9 +36,6 @@ export default {
 form {
   width: 80%;
   margin: 200px auto;
-  padding: 50px 100px;
-  border: thin solid #eee;
-  border-radius: 4px;
   .form-group {
     display: flex;
     label {

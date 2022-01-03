@@ -1,5 +1,6 @@
-import RoleController from '../service/role';
+import Service from '../service/role';
 import { Request, Response } from "express";
+import formatResponse from '../helper';
 
 
 export default {
@@ -12,8 +13,13 @@ export default {
   update(req: Request, res: Response) {
 
   },
-  getAll(req: Request, res: Response) {
-
+  async getAll(req: Request, res: Response) {
+    const resp = await Service.getAll();
+    if(resp instanceof Error) {
+      res.status(500).send(formatResponse(null, resp));
+    } else {
+      res.status(200).send(formatResponse(resp));
+    }
   },
   getById(req: Request, res: Response) {
 
