@@ -1,5 +1,5 @@
 {
-  "name": "workflow-designer",
+  "name": "form-workflow-designer",
   "version": "1.0.0",
   "description": "设计并实现一款流程设计器",
   "main": "index.js",
@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LuoHaoAt2017/workflow-designer.git"
+    "url": "git+https://github.com/LuoHaoAt2017/form-workflow-designer.git"
   },
   "author": "LuoHao",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/LuoHaoAt2017/workflow-designer/issues"
+    "url": "https://github.com/LuoHaoAt2017/form-workflow-designer/issues"
   },
-  "homepage": "https://github.com/LuoHaoAt2017/workflow-designer#readme",
+  "homepage": "https://github.com/LuoHaoAt2017/form-workflow-designer#readme",
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/plugin-transform-runtime": "^7.16.7",
