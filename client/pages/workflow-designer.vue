@@ -1,11 +1,11 @@
 <template>
-  <div class="designer">
-    designer
+  <div class="workflow-designer">
+    workflow designer
   </div>
 </template>
 <script>
 export default {
-  name: "Designer",
+  name: "WorkflowDesigner",
   components: {},
   data() {
     return {};
@@ -15,12 +15,12 @@ export default {
 };
 </script>
 <style lang="less">
-.designer {
+.workflow-designer {
   height: 100%;
   margin: 0 auto;
 }
 </style>
 <style lang="less" scoped>
-.designer {
+.workflow-designer {
 }
 </style>

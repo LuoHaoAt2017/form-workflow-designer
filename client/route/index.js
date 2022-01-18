@@ -13,10 +13,20 @@ export const routes = [
       icon: "home",
     },
   },
+  // <a-icon type="profile" />
   {
-    path: "/designer",
-    name: "Designer",
-    component: () => import("../pages/designer.vue"),
+    path: "/form-designer",
+    name: "FormDesigner",
+    component: () => import("../pages/form-designer.vue"),
+    meta: {
+      title: "表单设计",
+      icon: "profile",
+    },
+  },
+  {
+    path: "/workflow-designer",
+    name: "WorkflowDesigner",
+    component: () => import("../pages/workflow-designer.vue"),
     meta: {
       title: "流程设计",
       icon: "appstore",
