@@ -2,7 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
   baseURL: "http://localhost:9001",
-  timeout: 10000,
+  timeout: 15000,
   withCredentials: true, // 表示跨域请求时是否需要使用凭证
 });
 

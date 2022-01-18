@@ -11,7 +11,6 @@ export const routes = [
     meta: {
       title: "首页",
       icon: "home",
-      roles: ["user"],
     },
   },
   {
@@ -19,9 +18,8 @@ export const routes = [
     name: "Designer",
     component: () => import("../pages/designer.vue"),
     meta: {
-      title: "流程设计器",
+      title: "流程设计",
       icon: "appstore",
-      roles: ["admin"],
     },
   },
   {
@@ -29,9 +27,8 @@ export const routes = [
     name: "Auth",
     component: () => import("../pages/auth.vue"),
     meta: {
-      title: "用户权限管理",
-      icon: "setting",
-      roles: ["admin"],
+      title: "权限管理",
+      icon: "setting"
     },
   },
   {

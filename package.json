@@ -4,8 +4,8 @@
   "description": "设计并实现一款流程设计器",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.dev.js",
-    "build": "webpack --watch --config ./webpack.config.prod.js",
+    "start": "webpack-dev-server --config ./webpack/webpack.config.dev.js",
+    "build": "webpack --watch --config ./webpack/webpack.config.prod.js",
     "serve": "nodemon ./dist/app.js",
     "watch": "tsc --watch",
     "test": "jest --colors --watch",
@@ -24,7 +24,7 @@
   "homepage": "https://github.com/LuoHaoAt2017/form-workflow-designer#readme",
   "devDependencies": {
     "@babel/core": "^7.15.0",
-    "@babel/plugin-transform-runtime": "^7.16.7",
+    "@babel/plugin-transform-runtime": "^7.16.8",
     "@babel/preset-env": "^7.15.0",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
@@ -65,6 +65,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "ant-design-vue": "^1.7.8",
     "axios": "^0.21.1",
     "body-parser": "^1.19.1",
@@ -72,6 +73,7 @@
     "casbin-sequelize-adapter": "^2.3.1",
     "cookie-parser": "^1.4.6",
     "cookie-session": "^1.4.0",
+    "core-js": "^3.20.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mockjs": "^1.1.0",

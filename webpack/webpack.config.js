@@ -5,11 +5,11 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    'index': './client/index.js',
+    'index': path.resolve(__dirname, '../client/index.js')
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist/assets')
+    path: path.resolve(__dirname, '../dist')
   },
   module: {
     rules: [
@@ -33,8 +33,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve('./public/index.html'),
-      favicon: path.resolve('./public/favicon.ico'),
+      template: path.resolve(__dirname, '../public/index.html'),
+      favicon: path.resolve(__dirname, '../public/favicon.ico'),
       title: '流程设计器',
     }),
     new CleanWebpackPlugin(),
@@ -42,7 +42,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'client'),
+      '@': path.resolve(__dirname, '../client'),
     },
     extensions: [
       '.js', '.ts', '.vue'
